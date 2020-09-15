@@ -8,7 +8,8 @@ const handlers = {
     }),
     [FETCH_NOTES]: (state, {payload}) => ({
         ...state,
-        notes: payload
+        notes: payload,
+        loading: false
     }),
     [REMOVE_NOTE]: (state, {payload}) => ({
         ...state,
