@@ -9,6 +9,7 @@ export const Notes = ( { notes }) => {
             >
             <div>
                 <strong>{note.title}</strong>
+                {/*TODO edit date */}
                 <small>{new Date().toLocaleDateString()}</small>
             </div>
 

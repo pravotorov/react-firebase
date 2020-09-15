@@ -17,25 +17,26 @@ export const FirebaseState = ({children}) => {
 
     const fetchNotes = async () => {
         showLoader()
-        const res = await axios.get( `${url}/notes.json`)
+        const {data} = await axios.get( `${url}/notes.json`)
 
-        const payload = Object.keys(res.data).map(key =>{
-            return{
-                ...res.data[key],
-                id: key
-            }
-        });
-        dispatch({
-            type: FETCH_NOTES,
-            payload
-        })
-        console.log('fetchNotes', res.data)
+        if(data) {
+            const payload = Object.keys(data).map(key =>{
+                return{
+                    ...data[key],
+                    id: key
+                }
+            });
+            dispatch({
+                type: FETCH_NOTES,
+                payload
+            })
+        }
     }
 
     const addNote = async title => {
         const note = {
             title,
-            date: new Date.toJSON()
+            date: new Date
         }
         try{
             const res = await axios.post( `${url}/notes.json`, note)
